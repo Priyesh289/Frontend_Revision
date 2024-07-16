@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h2 id="display">Result</h2>
+    <div id="count">
+        <button>0</button>
+        <button>1</button>
+        <button>2</button>
+        <button>3</button>
+        <button>4</button>
+        <button>5</button>
+        <button>6</button>
+        <button>7</button>
+        <button>8</button>
+        <button>9</button>
+    </div>
+    <div id="operation">
+        <button>+</button>
+        <button>-</button>
+        <button>*</button>
+        <button>/</button>
+    </div>
+    <div>
+        <button id="equal">=</button>
+    </div>
+</body>
+
+</html>
+<script>
+
+    //calculaor = firstN  +  operator + secondN  +  Equal
+
+
+    // All button catch here with DOM    
+    let keyPad = document.querySelectorAll("#count>button");
+    let operation = document.querySelectorAll("#operation>button");
+    let equal = document.querySelector("#equal");
+    let display = document.querySelector("#display")
+
+
+    let firstN = "";
+    let isfirstN = true
+    let operator = "";
+    let secondN = "";
+
+    //count button
+    for (let i = 0; i < keyPad.length; i++) {
+        keyPad[i].addEventListener("click", function () {
+            if (isfirstN == true) {
+                firstN += keyPad[i].innerText
+                display.innerText = firstN
+            }
+            else{
+                secondN += keyPad[i].innerText 
+                display.innerText = secondN
+            }
+        })
+    }
+
+    //operation button
+    for (let i = 0; i < operation.length; i++) {
+        operation[i].addEventListener("click", function () {
+            isfirstN = false
+            operator = operation[i].innerText
+            console.log(operator)
+        })
+    }
+
+    //equal button
+    equal.addEventListener("click", function () {
+        display.innerText = calculaor(firstN,secondN,operator)
+    })
+
+// calculate
+    function calculaor(firstN,secondN,operator){
+        switch(operator){
+            case "+" :
+                return Number(firstN) + Number(secondN)
+            
+            case "-" :
+                return Number(firstN) - Number(secondN)
+            
+            case "*" :
+            return Number(firstN) * Number(secondN)
+
+            case "/" :
+            return Number(firstN) / Number(secondN)
+        }
+    }
+
+</script>
